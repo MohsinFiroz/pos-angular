@@ -1,0 +1,11 @@
+
+    <mat-grid-list cols="6" rowHeight="2:1">
+      <mat-grid-tile  *ngFor="let product of products">
+        <div class="container">
+          <img src="https://source.unsplash.com/featured/?{{ product.name }}" alt="Snow" style="width:100%;">
+          <div class="centered">{{ product.name }} </div>
+        </div> 
+      </mat-grid-tile>
+    </mat-grid-list>
+
+  

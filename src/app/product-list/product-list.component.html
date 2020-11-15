@@ -1,11 +1,22 @@
 
     <mat-grid-list cols="3" rowHeight="2:1">
       <mat-grid-tile  *ngFor="let product of products">
-        <div class="container">
-          <img src="https://source.unsplash.com/featured/?{{ product.name }}" alt="Snow" style="width:100%;">
-          <div class="centered">{{ product.name }} </div>
-        </div> 
+          <div class="container" (click)="add(product)">
+            <img src="https://source.unsplash.com/featured/?{{ product.name }}" alt="Snow" style="width:100%;">
+            <div class="centered">{{ product.name }} </div>
+          </div> 
       </mat-grid-tile>
     </mat-grid-list>
+    <nb-card small>
+      <nb-card-header>Items</nb-card-header>
+      <nb-card-body>
+        <nb-list >
+          <nb-list-item *ngFor="let product of cart.items">
+            {{product.name}}
+          </nb-list-item>
+        </nb-list>
+      </nb-card-body>
+      <nb-card-footer>Total: $ {{cart.total}} </nb-card-footer>
+    </nb-card>
 
   

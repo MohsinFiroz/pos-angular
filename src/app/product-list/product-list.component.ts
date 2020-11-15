@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { from } from 'rxjs';
 import { ProductService } from '../product.service';
 import {Product} from '../product'
+import {Cart} from '../cart'
 
 @Component({
   selector: 'app-product',
@@ -16,8 +17,11 @@ products: Product[];
     this.productService.getProducts().subscribe((data: any[])=>{
       console.log(data);
       this.products = data;
-    })
+    });
   }
-
+  cart: Cart = new Cart();
+  add(p: Product){
+    this.cart.addItem(p);
+  }
 
 }

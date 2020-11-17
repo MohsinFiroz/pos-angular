@@ -1,16 +1,16 @@
 import { Component, OnInit } from '@angular/core';
-import { from } from 'rxjs';
+import { Cart } from '../cart';
+import { Product } from '../product';
 import { ProductService } from '../product.service';
-import {Product} from '../product'
-import {Cart} from '../cart'
 
 @Component({
-  selector: 'app-product',
-  templateUrl: './product-list.component.html',
-  styleUrls: ['./product-list.component.css']
+  selector: 'app-home',
+  templateUrl: './home.component.html',
+  styleUrls: ['./home.component.css']
 })
-export class ProductListComponent implements OnInit {
-products: Product[];
+export class HomeComponent implements OnInit {
+
+  products: Product[];
   constructor(private productService: ProductService) { }
 
   ngOnInit() {

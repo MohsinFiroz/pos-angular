@@ -2,18 +2,15 @@
     <nb-layout-header fixed>
         Point of Sale
       </nb-layout-header>
-<nb-layout-column class="colored-column-success">
+<nb-layout-column class="products">
     <mat-grid-list cols="3" rowHeight="2:1">
         <mat-grid-tile  *ngFor="let product of products">
-            <div class="container" (click)="add(product)">
-              <img src="https://source.unsplash.com/featured/?{{ product.name }}" alt="Snow" style="width:100%;">
-              <div class="centered">{{ product.name }} </div>
-            </div> 
+          <button nbButton hero size="giant" (click) = "add(product)" >{{ product.name }}</button>
         </mat-grid-tile>
       </mat-grid-list>
   </nb-layout-column>
-  <nb-layout-column class="colored-column-warning">Firoz</nb-layout-column>
-  <nb-layout-column left class="colored-column-info">
+  
+  <nb-layout-column left class="cart">
       <nb-card id="card">
         <nb-card-header>Items</nb-card-header>
         <nb-card-body>

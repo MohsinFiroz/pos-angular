@@ -7,14 +7,17 @@ import { AppComponent } from './app.component';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { NbThemeModule, NbLayoutModule, NbListModule, NbCardModule, NbButtonModule} from '@nebular/theme';
 import { NbEvaIconsModule } from '@nebular/eva-icons';
-import {MatGridListModule} from '@angular/material/grid-list'; 
+import {MatGridListModule} from '@angular/material/grid-list';
+import { Ng2SmartTableModule } from 'ng2-smart-table';
 import { ProductService } from './product.service';
 import { HomeComponent } from './home/home.component';
+import { DashboardComponent } from './dashboard/dashboard.component';
 
 @NgModule({
   declarations: [
     AppComponent,
-    HomeComponent
+    HomeComponent,
+    DashboardComponent
   ],
   imports: [
     BrowserModule,
@@ -30,7 +33,8 @@ import { HomeComponent } from './home/home.component';
     NbListModule,
     NbCardModule,
     NbButtonModule,
-    MatGridListModule
+    MatGridListModule,
+    Ng2SmartTableModule
   ],
   providers: [ProductService],
   bootstrap: [AppComponent]

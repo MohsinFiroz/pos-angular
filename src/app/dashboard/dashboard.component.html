@@ -1,0 +1,12 @@
+<nb-layout>
+    <nb-layout-header fixed>
+        Dashboard
+      </nb-layout-header>
+<nb-layout-column class="products">
+  <ng2-smart-table [settings]="settings" [source]="source" (createConfirm)="addRecord($event)"></ng2-smart-table>
+  </nb-layout-column>
+  
+  <nb-layout-footer fixed>
+    Made with ❤ in Australia
+  </nb-layout-footer>
+</nb-layout>

@@ -6,7 +6,8 @@ const endpoint = 'http://localhost:8080/';
 const httpOptions = {
   headers: new HttpHeaders({
     'Content-Type':  'application/json'
-  })
+  }),
+  responseType: 'text'
 };
 
 @Injectable({
@@ -31,13 +32,14 @@ export class ProductService {
   //     map(this.extractData));
   // }
 
-  addProduct (product: any): Observable<any> {
-    console.log(product);
-    return this.http.post<any>(endpoint +'add', {name: product.name, price: 50},
+  addProduct (name: string, price: number): Observable<any> {
+    let params = new HttpParams()
+    .set('name', name)
+    .set('price', price.toString());
+    return this.http.post<any>(endpoint +'add', params, { responseType: 'text' as 'json' })
+    .pipe(
+      map(this.extractData)
     )
-    .pipe(map(user => {
-         console.log(user)
-    }));
     
   }
 

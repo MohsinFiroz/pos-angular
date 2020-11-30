@@ -3,7 +3,24 @@
         Dashboard
       </nb-layout-header>
 <nb-layout-column class="products">
-  <ng2-smart-table [settings]="settings" [source]="source" (createConfirm)="addRecord($event)"></ng2-smart-table>
+  <table class="table table-responsive table-striped">
+    <tr>
+      <th>id</th>
+      <th>name</th>
+      <th>year</th>
+    </tr>
+    <tr *ngFor="let row of products">
+      <td>{{row.id}}</td>
+      <td>{{row.name}}</td>
+      <td>{{row.price}}</td>
+    </tr>
+  </table>
+
+  <hr />
+  <input type="text" [(ngModel)]="name" placeholder="name" />
+  <input type="text" [(ngModel)]="price" placeholder="price" />
+
+  <button (click)="buttonClicked()">Click to Insert New Row</button>
   </nb-layout-column>
   
   <nb-layout-footer fixed>

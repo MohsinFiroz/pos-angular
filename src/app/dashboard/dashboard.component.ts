@@ -1,9 +1,6 @@
 import { Component, OnInit } from '@angular/core';
-import { LocalDataSource } from 'ng2-smart-table';
-import { InputFilterComponent } from 'ng2-smart-table/lib/components/filter/filter-types/input-filter.component';
 import { Product } from '../product';
 import { ProductService } from '../product.service';
-
 @Component({
   selector: 'app-dashboard',
   templateUrl: './dashboard.component.html',
@@ -12,46 +9,31 @@ import { ProductService } from '../product.service';
 export class DashboardComponent implements OnInit {
 
   products: Product[];
-  source: LocalDataSource;
 
-  settings = {
-    columns: {
-      id: {
-        title: 'ID',
-        editable: false,
-        addable: false,
-      },
-      name: {
-        title: 'Name'
-      },
-      price: {
-        title: 'Price',
-      }
-    },
-    add: {
-      confirmCreate: true,
-    }
-  };
+ 
+  
   constructor(private productService: ProductService) { }
 
   ngOnInit() {
-    this.source = new LocalDataSource();
     this.productService.getProducts().subscribe((data: Product[])=>{
       console.log(data);
       this.products = data;
-      this.source.load(data);
-
     });
   }
 
-  addRecord(event) {
-    var data = {
-      name: event.newData.name,
-                price : event.newData.price,
-                };
-                this.productService.addProduct(data);
-                 event.confirm.resolve(event.newData);
 
+  public name: string;
+  public price: number;
+  public rows: Array<{name: string, price: number}> = [];
+
+  buttonClicked() {
+    this.rows.push( {name: this.name, price: this.price } );
+    this.productService.addProduct(this.name, this.price).subscribe((data: any)=>{
+      console.log(data);;
+    });
+    //if you want to clear input
+    // this.name = null;
+    // this.price = null;
   }
 
 

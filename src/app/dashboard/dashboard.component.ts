@@ -29,12 +29,27 @@ export class DashboardComponent implements OnInit {
   buttonClicked() {
     this.rows.push( {name: this.name, price: this.price } );
     this.productService.addProduct(this.name, this.price).subscribe((data: any)=>{
-      console.log(data);;
+      console.log(data);
+      this.showAlert(data);
     });
     //if you want to clear input
     // this.name = null;
     // this.price = null;
   }
 
+ async showAlert(text: string) {
+  var header = document.getElementById('header');
+  var headerText = document.getElementById('headerText');
+  // elem.style.color = ;
+  headerText.textContent= text;
+  header.style.backgroundColor= '#00d68f'
+  await this.delay(2000);
+  headerText.textContent= "Dashboard";
+  header.style.backgroundColor= '#ffffff'
+
+}
+delay(ms: number) {
+  return new Promise( resolve => setTimeout(resolve, ms) );
+}
 
 }

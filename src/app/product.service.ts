@@ -52,12 +52,12 @@ export class ProductService {
   //   );
   // }
 
-  // deleteProduct (id): Observable<any> {
-  //   return this.http.delete<any>(endpoint + 'products/' + id, httpOptions).pipe(
-  //     tap(_ => console.log(`deleted product id=${id}`)),
-  //     catchError(this.handleError<any>('deleteProduct'))
-  //   );
-  // }
+  deleteProduct (id): Observable<any> {
+    return this.http.delete<any>(endpoint + 'product/' + id, { responseType: 'text' as 'json' })
+    .pipe(
+      map(this.extractData)
+    );
+  }
 
   private handleError<T> (operation = 'operation', result?: T) {
     return (error: any): Observable<T> => {

@@ -37,6 +37,14 @@ export class DashboardComponent implements OnInit {
     // this.price = null;
   }
 
+  deleteProduct(id: Number){
+    this.productService.deleteProduct(id).subscribe((data: any)=>{
+      console.log(data);
+      this.showAlert(data);
+    });
+
+  }
+
  async showAlert(text: string) {
   var header = document.getElementById('header');
   var headerText = document.getElementById('headerText');

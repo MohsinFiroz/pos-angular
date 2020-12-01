@@ -2,6 +2,9 @@
         <h1 id = "headerText">Dashboard</h1> 
       </nb-layout-header>
 <nb-layout-column class="products">
+  <input type="text" [(ngModel)]="name" placeholder="name" />
+  <input type="text" [(ngModel)]="price" placeholder="price" />
+  <button (click)="buttonClicked()">Click to Insert New Row</button>
   <table class="table table-responsive table-striped">
     <tr>
       <th>ID</th>
@@ -9,17 +12,11 @@
       <th>Price</th>
     </tr>
     <tr *ngFor="let row of products">
-      <td>{{row.id}}</td>
+      <td>{{row.id}} <button (click)="deleteProduct(row.id)">delete</button></td>
       <td>{{row.name}}</td>
       <td>{{row.price}}</td>
     </tr>
   </table>
-
-  <hr />
-  <input type="text" [(ngModel)]="name" placeholder="name" />
-  <input type="text" [(ngModel)]="price" placeholder="price" />
-
-  <button (click)="buttonClicked()">Click to Insert New Row</button>
   </nb-layout-column>
   
   <nb-layout-footer fixed>

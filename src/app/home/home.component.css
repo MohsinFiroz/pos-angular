@@ -16,3 +16,9 @@ nb-layout-column:last-child {
     position: fixed;
     width: 25%;
   }
+
+
+  .posButton{
+    height: 100px;
+    width: 150px;
+  }

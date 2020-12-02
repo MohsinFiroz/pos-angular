@@ -1,24 +1,39 @@
-<nb-layout-header id = "header" fixed>
-        <h1 id = "headerText">Dashboard</h1> 
-      </nb-layout-header>
-<nb-layout-column class="products">
-  <input type="text" [(ngModel)]="name" placeholder="name" />
-  <input type="text" [(ngModel)]="price" placeholder="price" />
-  <button (click)="buttonClicked()">Click to Insert New Row</button>
-  <table class="table table-responsive table-striped">
-    <tr>
-      <th>ID</th>
-      <th>Name</th>
-      <th>Price</th>
-    </tr>
-    <tr *ngFor="let row of products">
-      <td>{{row.id}} <button (click)="deleteProduct(row.id)">delete</button></td>
-      <td>{{row.name}}</td>
-      <td>{{row.price}}</td>
-    </tr>
-  </table>
+<nb-layout>
+  <nb-layout-header id="header" fixed>
+    <h1 id="headerText">Dashboard</h1>
+  </nb-layout-header>
+  <nb-layout-header subheader>
+    <button nbButton status="primary" routerLink=""  routerLinkActive="active"><nb-icon icon="monitor-outline"></nb-icon>Go back to POS</button>
+  </nb-layout-header>
+  <nb-layout-column class="products">
+    <nb-form-field>
+      <nb-icon nbPrefix icon="plus-outline" pack="eva"></nb-icon>
+      <input type="text" [(ngModel)]="name" placeholder="name" nbInput />
+    </nb-form-field>
+
+    <nb-form-field>
+      <nb-icon nbPrefix icon="at-outline" pack="eva"></nb-icon>
+      <input type="text" [(ngModel)]="price" placeholder="price" nbInput />
+    </nb-form-field>
+
+    <button nbButton status="primary" (click)="buttonClicked()">Add New Product</button>
+    <table class="table table-responsive table-striped">
+      <tr>
+        <th>ID</th>
+        <th>Name</th>
+        <th>Price</th>
+      </tr>
+
+      <tr *ngFor="let row of products">
+        <td> <button (click)="deleteProduct(row.id)" nbButton ghost status="danger">
+            <nb-icon icon="trash-outline"></nb-icon>
+          </button> {{row.id}} </td>
+        <td>{{row.name}}</td>
+        <td>{{row.price}}</td>
+      </tr>
+    </table>
   </nb-layout-column>
-  
   <nb-layout-footer fixed>
     Made with ❤ in Australia
   </nb-layout-footer>
+  <nb-layout>

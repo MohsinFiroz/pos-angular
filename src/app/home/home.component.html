@@ -6,11 +6,13 @@
     <button nbButton status="primary" routerLink="dashboard"  routerLinkActive="active"><nb-icon icon="activity-outline"></nb-icon>Dashboard</button>
   </nb-layout-header>
   <nb-layout-column class="products">
-    <mat-grid-list cols="5" rowHeight="2:1">
+    <div class="pl">
+    <mat-grid-list cols="5" rowHeight="1:1">
       <mat-grid-tile *ngFor="let product of products">
         <button nbButton status="danger" size="giant" (click)="add(product)" class="posButton">{{ product.name }}</button>
       </mat-grid-tile>
     </mat-grid-list>
+  </div>
   </nb-layout-column>
 
   <nb-layout-column left class="cart">

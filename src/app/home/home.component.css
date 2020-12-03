@@ -22,3 +22,8 @@ nb-layout-column:last-child {
     height: 100px;
     width: 150px;
   }
+
+  .pl{
+    height: 600px;
+    overflow: scroll;
+  }

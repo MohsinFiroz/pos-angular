@@ -17,19 +17,27 @@
     </nb-form-field>
 
     <button nbButton status="primary" (click)="buttonClicked()">Add New Product</button>
-    <table class="table table-responsive table-striped">
+
+
+    <table class="table">
       <tr>
         <th>ID</th>
         <th>Name</th>
         <th>Price</th>
       </tr>
 
-      <tr *ngFor="let row of products">
-        <td> <button (click)="deleteProduct(row.id)" nbButton ghost status="danger">
+      <tr *ngFor="let product of products">
+        <td>
+          <button (click)="deleteProduct(product.id)" nbButton ghost status="danger">
             <nb-icon icon="trash-outline"></nb-icon>
-          </button> {{row.id}} </td>
-        <td>{{row.name}}</td>
-        <td>{{row.price}}</td>
+          </button>
+          <button (click)="open(product.id)" nbButton status="warning">
+            <nb-icon icon="edit-outline"></nb-icon>
+          </button> 
+          {{product.id}} 
+        </td>
+        <td>{{product.name}}</td>
+        <td>{{product.price}}</td>
       </tr>
     </table>
   </nb-layout-column>

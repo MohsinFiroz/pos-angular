@@ -45,12 +45,12 @@ export class ProductService {
 
   
 
-  // updateProduct (id, product): Observable<any> {
-  //   return this.http.put(endpoint + 'products/' + id, JSON.stringify(product), httpOptions).pipe(
-  //     tap(_ => console.log(`updated product id=${id}`)),
-  //     catchError(this.handleError<any>('updateProduct'))
-  //   );
-  // }
+  updateProduct (id, product): Observable<any> {
+    return this.http.put(endpoint + 'product/' + id, JSON.stringify(product)).pipe(
+      tap(_ => console.log(`updated product id=${id}`)),
+      catchError(this.handleError<any>('updateProduct'))
+    );
+  }
 
   deleteProduct (id): Observable<any> {
     return this.http.delete<any>(endpoint + 'product/' + id, { responseType: 'text' as 'json' })

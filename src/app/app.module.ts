@@ -5,18 +5,20 @@ import { FormsModule } from '@angular/forms';
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
-import { NbThemeModule, NbLayoutModule, NbListModule, NbCardModule, NbButtonModule, NbInputModule, NbFormFieldModule, NbIconModule} from '@nebular/theme';
+import { NbThemeModule, NbLayoutModule, NbListModule, NbCardModule, NbButtonModule, NbInputModule, NbFormFieldModule, NbIconModule, NbDialogModule} from '@nebular/theme';
 import { NbEvaIconsModule } from '@nebular/eva-icons';
 import {MatGridListModule} from '@angular/material/grid-list';
 import { ProductService } from './product.service';
 import { HomeComponent } from './home/home.component';
 import { DashboardComponent } from './dashboard/dashboard.component';
+import { ProductUpdateDialogComponent } from './product-update-dialog/product-update-dialog.component';
 
 @NgModule({
   declarations: [
     AppComponent,
     HomeComponent,
-    DashboardComponent
+    DashboardComponent,
+    ProductUpdateDialogComponent
   ],
   imports: [
     BrowserModule,
@@ -24,6 +26,7 @@ import { DashboardComponent } from './dashboard/dashboard.component';
     HttpClientModule,
     BrowserAnimationsModule,
     NbThemeModule.forRoot({ name: 'default' }),
+    NbDialogModule.forRoot(),
     NbLayoutModule,
     NbEvaIconsModule,
     NbListModule,

@@ -1,47 +1,56 @@
-<nb-layout>
-  <nb-layout-header id="header" fixed>
+<nz-layout>
+  <nz-header id="header" fixed>
     <h1 id="headerText">Dashboard</h1>
-  </nb-layout-header>
-  <nb-layout-header subheader>
-    <button nbButton status="primary" routerLink=""  routerLinkActive="active"><nb-icon icon="monitor-outline"></nb-icon>Go back to POS</button>
-  </nb-layout-header>
-  <nb-layout-column class="products">
-    <nb-form-field>
-      <nb-icon nbPrefix icon="plus-outline" pack="eva"></nb-icon>
-      <input type="text" [(ngModel)]="name" placeholder="name" nbInput />
-    </nb-form-field>
-
-    <nb-form-field>
-      <nb-icon nbPrefix icon="at-outline" pack="eva"></nb-icon>
-      <input type="text" [(ngModel)]="price" placeholder="price" nbInput />
-    </nb-form-field>
-
-    <button nbButton status="primary" (click)="buttonClicked()">Add New Product</button>
-
-
-    <table class="table">
-      <tr>
+  </nz-header>
+  <nz-header subheader>
+    <button nz-button nzType="primary" routerLink=""  routerLinkActive="active"><i nz-icon nzType="desktop" nzTheme="outline"></i>Go back to POS</button>
+  </nz-header>
+  <nz-content>
+        <form nz-form [nzLayout]="'inline'" [formGroup]="" >
+          <nz-form-item>
+            <nz-form-control nzErrorTip="Please input your username!">
+              <nz-input-group nzPrefixIcon="plus">
+                <input formControlName="name" nz-input [(ngModel)]="name" placeholder="name" nbInput />
+              </nz-input-group>
+            </nz-form-control>
+          </nz-form-item>
+          <nz-form-item>
+            <nz-form-control nzErrorTip="Please input your Password!">
+              <nz-input-group nzPrefixIcon="dollar">
+                <input formControlName="price" nz-input [(ngModel)]="price" placeholder="price" nbInput />
+              </nz-input-group>
+            </nz-form-control>
+          </nz-form-item>
+          <nz-form-item>
+            <nz-form-control>
+              <button nz-button nzType="primary" (click)="buttonClicked()">Add New Product</button>
+            </nz-form-control>
+          </nz-form-item>
+        </form>
+      
+        <nz-table #basicTable [nzData]="products">
+          <thead>
+            <tr>
         <th>ID</th>
         <th>Name</th>
         <th>Price</th>
-      </tr>
+            </tr>
+          </thead>
+          <tbody>
+            <tr *ngFor="let product of products">
+              <td>
+                <button nz-button nzType="primary" (click)="deleteProduct(product.id)"><i nz-icon nzType="delete"></i></button>
+                <button nz-button nzType="primary" ><i nz-icon nzType="edit"></i></button>
+                {{product.id}}
+              </td>
+              <td>{{product.name}}</td>
+              <td>{{product.price}}</td>
+            </tr>
+          </tbody>
+        </nz-table>
+  </nz-content>
 
-      <tr *ngFor="let product of products">
-        <td>
-          <button (click)="deleteProduct(product.id)" nbButton ghost status="danger">
-            <nb-icon icon="trash-outline"></nb-icon>
-          </button>
-          <button (click)="open(product.id)" nbButton status="warning">
-            <nb-icon icon="edit-outline"></nb-icon>
-          </button> 
-          {{product.id}} 
-        </td>
-        <td>{{product.name}}</td>
-        <td>{{product.price}}</td>
-      </tr>
-    </table>
-  </nb-layout-column>
-  <nb-layout-footer fixed>
+  <nz-footer>
     Made with ❤ in Australia
-  </nb-layout-footer>
-  <nb-layout>
+  </nz-footer>
+  <nz-layout>

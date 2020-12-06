@@ -1,34 +1,48 @@
-<nb-layout>
-  <nb-layout-header>
+<nz-layout>
+  <nz-header>
     <h1>Point of Sale</h1>
-  </nb-layout-header>
-  <nb-layout-header subheader>
-    <button nbButton status="primary" routerLink="dashboard"  routerLinkActive="active"><nb-icon icon="activity-outline"></nb-icon>Dashboard</button>
-  </nb-layout-header>
-  <nb-layout-column class="products">
-    <div class="pl">
-    <mat-grid-list cols="5" rowHeight="1:1">
-      <mat-grid-tile *ngFor="let product of products">
-        <button nbButton status="danger" size="giant" (click)="add(product)" class="posButton">{{ product.name }}</button>
-      </mat-grid-tile>
-    </mat-grid-list>
-  </div>
-  </nb-layout-column>
+  </nz-header>
+  <nz-header>
+    <button nz-button nzType="primary" routerLink="dashboard" routerLinkActive="active" [nzLoading]=""><i nz-icon
+        nzType="dashboard" nzTheme="outline"></i>Click me!</button>
+  </nz-header>
+  <nz-content>
+    <div nz-row>
 
-  <nb-layout-column left class="cart">
-    <nb-card id="card">
-      <nb-card-header>Items</nb-card-header>
-      <nb-card-body>
-        <nb-list>
-          <nb-list-item *ngFor="let product of cart.items">
-            {{product.name}}
-          </nb-list-item>
-        </nb-list>
-      </nb-card-body>
-      <nb-card-footer>Total: $ {{cart.total}} </nb-card-footer>
-    </nb-card>
-  </nb-layout-column>
-  <nb-layout-footer fixed>
+      <div nz-col nzSpan="12">
+        <nz-card nzTitle="Card title">
+          <ul nz-list [nzDataSource]="cart.items" nzBordered nzSize="large">
+            <nz-list-header>Cart</nz-list-header>
+            <li nz-list-item *ngFor="let product of cart.items" nzNoFlex>
+              <ul nz-list-item-actions>
+                <nz-list-item-action>
+                  <a>edit</a>
+                </nz-list-item-action>
+              </ul>
+              {{product.name}}
+            </li>
+            <nz-list-footer>Total: ${{cart.total}}</nz-list-footer>
+          </ul>
+        </nz-card>
+      </div>
+
+      <div nz-col nzSpan="12">
+        <nz-list nzGrid>
+          <div nz-row [nzGutter]="16">
+            <div nz-col [nzSpan]="6" *ngFor="let product of products">
+              <nz-list-item>
+                <nz-card [nzTitle]="product.name" (click)="add(product)">
+                  Card content
+                </nz-card>
+              </nz-list-item>
+            </div>
+          </div>
+        </nz-list>
+      </div>
+
+    </div>
+  </nz-content>
+  <nz-footer>
     Made with ❤ in Australia
-  </nb-layout-footer>
-</nb-layout>
+  </nz-footer>
+</nz-layout>

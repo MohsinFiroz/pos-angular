@@ -1,8 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { Product } from '../product';
 import { ProductService } from '../product.service';
-import { NbDialogService } from '@nebular/theme';
-import { ProductUpdateDialogComponent } from '../product-update-dialog/product-update-dialog.component';
 @Component({
   selector: 'app-dashboard',
   templateUrl: './dashboard.component.html',
@@ -14,7 +12,7 @@ export class DashboardComponent implements OnInit {
 
 
   
-  constructor(private productService: ProductService, private dialogService: NbDialogService) { }
+  constructor(private productService: ProductService) { }
 
   ngOnInit() {
     this.productService.getProducts().subscribe((data: Product[])=>{
@@ -53,10 +51,7 @@ export class DashboardComponent implements OnInit {
     });
   }
 
-  open(id: number) {
-    this.dialogService.open(ProductUpdateDialogComponent)
-      .onClose.subscribe(newProduct => newProduct && this.updateProduct(id, newProduct));
-  }
+
 
  
 

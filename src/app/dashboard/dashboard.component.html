@@ -1,53 +1,61 @@
 <nz-layout>
-  <nz-header id="header" fixed>
+  <nz-header id="header">
     <h1 id="headerText">Dashboard</h1>
   </nz-header>
-  <nz-header subheader>
-    <button nz-button nzType="primary" routerLink=""  routerLinkActive="active"><i nz-icon nzType="desktop" nzTheme="outline"></i>Go back to POS</button>
-  </nz-header>
   <nz-content>
-        <form nz-form [nzLayout]="'inline'" [formGroup]="" >
-          <nz-form-item>
-            <nz-form-control nzErrorTip="Please input your username!">
-              <nz-input-group nzPrefixIcon="plus">
-                <input formControlName="name" nz-input [(ngModel)]="name" placeholder="name" nbInput />
-              </nz-input-group>
-            </nz-form-control>
-          </nz-form-item>
-          <nz-form-item>
-            <nz-form-control nzErrorTip="Please input your Password!">
-              <nz-input-group nzPrefixIcon="dollar">
-                <input formControlName="price" nz-input [(ngModel)]="price" placeholder="price" nbInput />
-              </nz-input-group>
-            </nz-form-control>
-          </nz-form-item>
-          <nz-form-item>
-            <nz-form-control>
-              <button nz-button nzType="primary" (click)="buttonClicked()">Add New Product</button>
-            </nz-form-control>
-          </nz-form-item>
-        </form>
-      
-        <nz-table #basicTable [nzData]="products">
-          <thead>
-            <tr>
-        <th>ID</th>
-        <th>Name</th>
-        <th>Price</th>
-            </tr>
-          </thead>
-          <tbody>
-            <tr *ngFor="let product of products">
-              <td>
-                <button nz-button nzType="primary" (click)="deleteProduct(product.id)"><i nz-icon nzType="delete"></i></button>
-                <button nz-button nzType="primary" ><i nz-icon nzType="edit"></i></button>
-                {{product.id}}
-              </td>
-              <td>{{product.name}}</td>
-              <td>{{product.price}}</td>
-            </tr>
-          </tbody>
-        </nz-table>
+    <button nz-button nzType="primary" routerLink="" routerLinkActive="active"><i nz-icon nzType="desktop"
+        nzTheme="outline"></i>Go back to POS</button>
+    <form nz-form [nzLayout]="'inline'" [formGroup]="validateForm" (ngSubmit)="submitForm()">
+      <nz-form-item>
+        <nz-form-control nzErrorTip="Please input your username!">
+          <nz-input-group nzPrefixIcon="plus">
+            <input formControlName="name" nz-input placeholder="name" />
+          </nz-input-group>
+        </nz-form-control>
+      </nz-form-item>
+      <nz-form-item>
+        <nz-form-control nzErrorTip="Please input your Password!">
+          <nz-input-group nzPrefixIcon="dollar">
+            <input formControlName="price" nz-input placeholder="price" />
+          </nz-input-group>
+        </nz-form-control>
+      </nz-form-item>
+      <nz-form-item>
+        <nz-form-control>
+          <button nz-button nzType="primary" (click)="buttonClicked()" [disabled]="!validateForm.valid">Add New
+            Product</button>
+        </nz-form-control>
+      </nz-form-item>
+    </form>
+
+
+    <nz-table #basicTable [nzData]="products" [nzLoading]="loading">
+      <thead>
+        <tr>
+          <th>ID</th>
+          <th>Name</th>
+          <th>Price</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr *ngFor="let product of basicTable.data">
+          <td>
+            <nz-space>
+              <nz-space-item>
+                <button nz-button nzType="text" (click)="deleteProduct(product.id)"><i nz-icon
+                  nzType="delete"></i></button>
+              </nz-space-item>
+              <nz-space-item>
+                <button nz-button nzType="dashed"><i nz-icon nzType="edit"></i></button>
+              </nz-space-item>
+            </nz-space>
+            {{product.id}}
+          </td>
+          <td>{{product.name}}</td>
+          <td>{{product.price}}</td>
+        </tr>
+      </tbody>
+    </nz-table>
   </nz-content>
 
   <nz-footer>

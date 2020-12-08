@@ -2,37 +2,32 @@
   <nz-header>
     <h1>Point of Sale</h1>
   </nz-header>
-  <nz-header>
-    <button nz-button nzType="primary" routerLink="dashboard" routerLinkActive="active" [nzLoading]=""><i nz-icon
-        nzType="dashboard" nzTheme="outline"></i>Click me!</button>
-  </nz-header>
+
   <nz-content>
+    <button nz-button nzType="primary" routerLink="dashboard" routerLinkActive="active" [nzLoading]="" ><i nz-icon
+      nzType="dashboard" nzTheme="outline"></i>Dashboard</button>
     <div nz-row>
 
-      <div nz-col nzSpan="12">
-        <nz-card nzTitle="Card title">
-          <ul nz-list [nzDataSource]="cart.items" nzBordered nzSize="large">
-            <nz-list-header>Cart</nz-list-header>
-            <li nz-list-item *ngFor="let product of cart.items" nzNoFlex>
-              <ul nz-list-item-actions>
-                <nz-list-item-action>
-                  <a>edit</a>
-                </nz-list-item-action>
-              </ul>
-              {{product.name}}
-            </li>
-            <nz-list-footer>Total: ${{cart.total}}</nz-list-footer>
-          </ul>
+      <div nz-col nzSpan="6">
+        <nz-card nzTitle="Transection">
+          <nz-list nzItemLayout="horizontal" class="itemList">
+            <nz-list-item *ngFor="let item of cart.items">
+              {{item.name}}
+              <span>${{item.price}}</span>
+            </nz-list-item>
+            <nz-list-empty *ngIf="cart.items.length === 0"></nz-list-empty>
+          </nz-list>
         </nz-card>
+        <h2>Total: ${{cart.total}}</h2>
       </div>
 
-      <div nz-col nzSpan="12">
-        <nz-list nzGrid>
+      <div nz-col nzSpan="18">
+        <nz-list nzGrid [nzLoading]="loading">
           <div nz-row [nzGutter]="16">
-            <div nz-col [nzSpan]="6" *ngFor="let product of products">
+            <div nz-col [nzSpan]="3" *ngFor="let product of products">
               <nz-list-item>
                 <nz-card [nzTitle]="product.name" (click)="add(product)">
-                  Card content
+                  <h1>${{product.price}}</h1>
                 </nz-card>
               </nz-list-item>
             </div>

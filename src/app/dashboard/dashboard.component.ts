@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { Product } from '../product';
 import { ProductService } from '../product.service';
 @Component({
@@ -8,16 +9,33 @@ import { ProductService } from '../product.service';
 })
 export class DashboardComponent implements OnInit {
 
-  products: Product[];
+  products: Product[]  = [];
+  loading: boolean = false;
 
 
-  
-  constructor(private productService: ProductService) { }
+  validateForm!: FormGroup;
+
+  submitForm(): void {
+    for (const i in this.validateForm.controls) {
+      this.validateForm.controls[i].markAsDirty();
+      this.validateForm.controls[i].updateValueAndValidity();
+    }
+  }
+
+
+  constructor(private productService: ProductService, private fb: FormBuilder) { }
 
   ngOnInit() {
+    this.loading = true;
     this.productService.getProducts().subscribe((data: Product[])=>{
       console.log(data);
       this.products = data;
+      this.loading = false;
+    });
+    this.validateForm = this.fb.group({
+      name: [null, [Validators.required]],
+      price: [null, [Validators.required]],
+      //remember: [true]
     });
   }
 
@@ -28,7 +46,7 @@ export class DashboardComponent implements OnInit {
 
   buttonClicked() {
     this.rows.push( {name: this.name, price: this.price } );
-    this.productService.addProduct(this.name, this.price).subscribe((data: any)=>{
+    this.productService.addProduct(this.validateForm.get('name').value, this.validateForm.get('price').value).subscribe((data: any)=>{
       console.log(data);
       this.showAlert(data);
     });
@@ -36,6 +54,8 @@ export class DashboardComponent implements OnInit {
     // this.name = null;
     // this.price = null;
   }
+
+  
   
   updateProduct(id: Number, newProduct: Product){
     this.productService.updateProduct(id, newProduct).subscribe((data: any)=>{

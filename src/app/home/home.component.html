@@ -4,11 +4,13 @@
   </nz-header>
 
   <nz-content>
-    <button nz-button nzType="primary" routerLink="dashboard" routerLinkActive="active" [nzLoading]="" ><i nz-icon
+    <button id="dashButton" nz-button nzType="primary" routerLink="dashboard" routerLinkActive="active" [nzLoading]="" ><i nz-icon
       nzType="dashboard" nzTheme="outline"></i>Dashboard</button>
-    <div nz-row>
+  
 
-      <div nz-col nzSpan="6">
+    <div class="homeBody" nz-row>
+
+      <div class="cart" nz-col nzSpan="6">
         <nz-card nzTitle="Transection">
           <nz-list nzItemLayout="horizontal" class="itemList">
             <nz-list-item *ngFor="let item of cart.items">
@@ -21,7 +23,7 @@
         <h2>Total: ${{cart.total}}</h2>
       </div>
 
-      <div nz-col nzSpan="18">
+      <div class="items" nz-col nzSpan="18">
         <nz-list nzGrid [nzLoading]="loading">
           <div nz-row [nzGutter]="16">
             <div nz-col [nzSpan]="3" *ngFor="let product of products">

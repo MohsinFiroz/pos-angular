@@ -3,8 +3,7 @@
     <h1 id="headerText">Dashboard</h1>
   </nz-header>
   <nz-content>
-    <button nz-button nzType="primary" routerLink="" routerLinkActive="active"><i nz-icon nzType="desktop"
-        nzTheme="outline"></i>Go back to POS</button>
+    <div class="formSection">
     <form nz-form [nzLayout]="'inline'" [formGroup]="validateForm" (ngSubmit)="submitForm()">
       <nz-form-item>
         <nz-form-control nzErrorTip="Please input your username!">
@@ -27,7 +26,12 @@
         </nz-form-control>
       </nz-form-item>
     </form>
-
+  </div>
+    <div class="posButtonDiv">
+    <button nz-button nzType="primary" routerLink="" routerLinkActive="active"><i nz-icon nzType="desktop"
+        nzTheme="outline"></i>Go back to POS</button>
+      </div>
+      
 
     <nz-table #basicTable [nzData]="products" [nzLoading]="loading">
       <thead>

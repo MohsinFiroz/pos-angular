@@ -1,0 +1,21 @@
+    .formSection {
+    padding:20px;
+    float:left;
+    width:80%; 
+  }
+  .posButtonDiv {
+    display: flex;
+    justify-content: flex-end;
+    padding:20px;
+    float: left;
+    width:20%; 
+  }
+  nz-footer {
+    width: 100%;
+    position: fixed;
+    bottom: 0;
+    background-color: #3b4045;
+    text-align: center;
+    color: white;
+  }
+

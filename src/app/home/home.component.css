@@ -1,5 +1,28 @@
+#dashButton{
+    margin: 20px;    
+}
+
+.homeBody{
+    margin-bottom: 50px;
+}
+
+.cart{
+    padding: 20px;
+}
+.items{
+    padding: 20px;
+}
 .itemList{
     height: 500px;
     overflow: auto;
 }
 
+
+nz-footer {
+    width: 100%;
+    position: fixed;
+    bottom: 0;
+    background-color: #3b4045;
+    text-align: center;
+    color: white;
+  }
